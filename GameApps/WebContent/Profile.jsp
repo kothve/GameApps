@@ -15,7 +15,7 @@
             <tr>
                 <td colspan=4 align="center"
                     style="background-color:teal">
-                    <b>Game Record</b></td>
+                    <b>User Profile</b></td>
             </tr>
             <tr style="background-color:lightgrey;">
                 <td><b>User ID</b></td>
@@ -28,7 +28,7 @@
                 <td><b>Address 2</b></td>
                  <td><b>City</b></td>
                  <td><b>State</b></td>
-                <td><b>Discount</b></td>
+                <td><b>Country</b></td>
             </tr>
             <%
                 int count = 0;
@@ -57,7 +57,7 @@
                 <td><%=userProfileList.get(8)%></td>
                 <td><%=userProfileList.get(9)%></td>
                 <td><%=userProfileList.get(10)%></td>
-                <td><%=userProfileList.get(11)%></td>
+                                
                 
             </tr>
             <%
@@ -72,6 +72,88 @@
             <%            }
             %>
         </table>
+        <br>
+        <br>
+     
+    <form action="AddInfoProfile" method="post">  
+	Address1:<input type="text" name="userAddress1"/><br/><br/>  
+	Address2:<input type="text" name="userAddress2"/><br/><br/> 
+	City:<input type="text" name="userCity"/><br/><br/>  
+	State(2 letters):<input type="text" name="userState"/><br/><br/> 
+	Zip Code:<input type="text" name="userZip"/><br/><br/>
+	Country:<input type="text" name="userCountry"/><br/><br/>
+	 
+     
+     <br>
+      <br>
+     
+     
+     
+     
+        
+	  
+	Credit Card type:<input type="text" name="creditCard"><br>  
+	Credit Card Number:<input type="text" name="creditCardNumber"><br>
+	Credit Card CVV:<input type="text" name="creditCardCVV"><br>
+	Credit Card Expiration date:<input type="text" name="creditCardExpiration"><br>  
+	<input type="submit" value="Add Credit Card / Edit information">  
+	</form>  
+
+
+
+<%if(request.getAttribute("CreditCardRegistered") == "yes") {%>
+<table width="700px" align="center"
+               style="border:1px solid #000000;">
+            <tr>
+                <td colspan=4 align="center"
+                    style="background-color:teal">
+                    <b>Credit Card Info</b></td>
+            </tr>
+            <tr style="background-color:lightgrey;">
+                <td><b>Credit Card Type</b></td>
+                <td><b>Credit Card Number</b></td>
+                <td><b>CVV</b></td>
+                <td><b>Expiration date</b></td>
+                
+            </tr>
+            <%
+                int count1 = 0;
+                String color1 = "#F9EBB3";
+                if (request.getAttribute("userCardInfo") != null) {
+                    ArrayList a2 = (ArrayList) request.getAttribute("userCardInfo");
+                    System.out.println(a2);
+                    Iterator itr = a2.iterator();
+                    while (itr.hasNext()) {
+ 
+                        if ((count1 % 2) == 0) {
+                            color = "#eeffee";
+                        }
+                        count++;
+                        ArrayList userProfileList = (ArrayList) itr.next();
+            %>
+            <tr style="background-color:<%=color1%>;">
+                <td><%=userProfileList.get(0)%></td>
+                <td><%=userProfileList.get(1)%></td>
+                <td><%=userProfileList.get(2)%></td>
+                <td><%=userProfileList.get(3)%></td>
+                
+                                
+                
+            </tr>
+            <%
+                    }
+                }
+                if (count == 0) {
+            %>
+            <tr>
+                <td colspan=4 align="center"
+                    style="background-color:#eeffee"><b>No Record Found..</b></td>
+            </tr>
+            <%            }
+            %>
+        </table>
+<%} %>
+
 
 
 

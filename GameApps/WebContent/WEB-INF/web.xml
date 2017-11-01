@@ -38,6 +38,24 @@
         <url-pattern>/Search</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>DetailedInfo</servlet-name>
+        <servlet-class>DetailedInfo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DetailedInfo</servlet-name>
+        <url-pattern>/DetailedInfo</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>AddInfoProfile</servlet-name>
+        <servlet-class>AddInfoProfile</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddInfoProfile</servlet-name>
+        <url-pattern>/AddInfoProfile</url-pattern>
+    </servlet-mapping>
+    
     
     <servlet>
         <servlet-name>Specials</servlet-name>

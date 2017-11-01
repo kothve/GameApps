@@ -21,11 +21,12 @@ public class ProfileServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)  
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)  
                           throws ServletException, IOException {  
 		
 		try{  
 			
+			boolean ShowCreditCardInfo = false;
 			 response.setContentType("text/html");  
 		         
 			 PrintWriter out = response.getWriter();
@@ -73,17 +74,27 @@ public class ProfileServlet extends HttpServlet {
             al.add(rs.getString(9));
             al.add(rs.getString(10));
             al.add(rs.getString(11));
-            al.add(rs.getString(12));
+            
 
             
             userProfileList.add(al);
         }
         
-        request.setAttribute("userProfileList", userProfileList);
-        RequestDispatcher view = request.getRequestDispatcher("/Profile.jsp");
-        view.forward(request, response); 
-		
-		
+   
+                request.setAttribute("userProfileList", userProfileList);
+                RequestDispatcher view = request.getRequestDispatcher("/Profile.jsp");
+                view.forward(request, response); 
+       	
+       	
+        	
+        
+        
+        
+        
+        
+        
+        
+        
          
        out.close();
         con.close();

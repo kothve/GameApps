@@ -38,6 +38,7 @@ public class Search extends HttpServlet {
         	
         	
             String game_Id = request.getParameter("game_Id");
+            
             String game_Name = request.getParameter("game_Name");
             String console = request.getParameter("console");
             String genre = request.getParameter("genre");
@@ -49,8 +50,7 @@ public class Search extends HttpServlet {
             
             ArrayList gameList = new ArrayList();
             int gameInt = 1;
-            int switchCase = 0;
-            String selection = "1";
+            
             
             
             int[] isNotEmpty = {0,0,0,0,0,0,0};
@@ -93,6 +93,11 @@ public class Search extends HttpServlet {
             	
             }
             
+            
+            
+            
+            
+            
             if(!request.getParameter("game_Name").isEmpty() ){
             	
             	isNotEmpty[1] = 1 ;
@@ -106,6 +111,8 @@ public class Search extends HttpServlet {
             		
             		
             	}
+            	
+            	
             	
             	else if(isNotEmpty[0] == 0) {
             		

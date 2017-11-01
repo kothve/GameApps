@@ -6,9 +6,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
 public class Register extends HttpServlet {
+	
+	private static EmailValidator emailValidator;
+	
+	
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
 		//connection info
 		String url = "jdbc:mysql://localhost/soen387";
 		String username1 = "o_mercie";
@@ -71,7 +75,9 @@ public class Register extends HttpServlet {
 		
 		if(!request.getParameter("userFirstName").isEmpty() && !request.getParameter("userLastName").isEmpty() && !request.getParameter("userName").isEmpty() && !request.getParameter("userPass").isEmpty() && !request.getParameter("userEmail").isEmpty()){
 			
-		out.println("You are successfully registered...");
+			
+			
+			 emailValidator = new EmailValidator();
 		
 		try{
 			
@@ -84,6 +90,21 @@ public class Register extends HttpServlet {
 				
 				
 			}
+			
+			else if(!EmailValidator.validateEmail(email)){
+				
+				
+				
+				request.setAttribute("RegisterResult", "emailError"); 
+				 RequestDispatcher view = request.getRequestDispatcher("/Register.jsp");
+			        view.forward(request, response);
+				
+				
+				
+				
+				
+			}
+			
 			
 			
 			else{

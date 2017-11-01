@@ -43,6 +43,12 @@ else {
  <p style="color:red">Username is already taken. Please try again. </p>
 <% } %>
 
+<%
+    if (request.getAttribute("RegisterResult") == "emailError" ){
+%>
+ <p style="color:red">Email has the wrong format. Please try again. </p>
+<% } %>
+
 <br><br>
 
 <form action="Register" method="post">  

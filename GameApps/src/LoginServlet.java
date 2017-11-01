@@ -37,7 +37,7 @@ public void doPost(HttpServletRequest request, HttpServletResponse response)
     String password =request.getParameter("password");  
     RequestDispatcher rd = null;      
     
-    if(Login.validate(username, password)){  //authentication
+    if(Login.validate(username, password)){  //uthentication
     	
     	//display all the database items
     	try{  
@@ -96,7 +96,7 @@ public void doPost(HttpServletRequest request, HttpServletResponse response)
     	 request.setAttribute("gameList", gameList);  	
     	session.setAttribute("user", username);
     	
-    	session.setMaxInactiveInterval(3000);   
+    	session.setMaxInactiveInterval(1000);   
     	rd = request.getRequestDispatcher("Success.jsp");
     	 rd.forward(request, response);
     	//response.sendRedirect("Success.jsp");

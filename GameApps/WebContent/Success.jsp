@@ -11,10 +11,10 @@
 </head>
 <body>
 
-<a href="Specials">Specials</a>|  ||
-<a href="ProfileServlet">Profile</a>  ||
-<form action="LogoutServlet" method="post">
-		<input type="submit" value="Logout">
+<a href="Specials">Specials</a>|
+<form action="ProfileServlet" method="post"> <input type="submit" value="See Profile"></form>|
+
+<form action="LogoutServlet" method="post"> <input type="submit" value="Logout">
 	</form>
 <br><br>
 
@@ -79,8 +79,8 @@ Publisher:<input type="text" name="publisher"/>||
                         count++;
                         ArrayList gameList = (ArrayList) itr.next();
             %>
-            <tr style="background-color:<%=color%>;">
-                <td><%=gameList.get(0)%></td>
+            <tr style="background-color:<%=color%>;">           
+            	<td><form method="post" action="DetailedInfo"><input type="hidden" name="gameID" value="<%=gameList.get(0)%>"> <input type="submit" value="<%=gameList.get(0)%>"/> </form> </td>  
                 <td><%=gameList.get(1)%></td>
                 <td><%=gameList.get(2)%></td>               
                 <td><%=gameList.get(3)%></td>
@@ -102,7 +102,7 @@ Publisher:<input type="text" name="publisher"/>||
             %>
         </table>
 
-
+ 
 
 
 
