@@ -1,18 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.*" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link href="<c:url value="/style.css" />" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
 
-<table width="700px" align="center"
+<table width="100%" align="center"
                style="border:1px solid #000000;">
             <tr>
-                <td colspan=4 align="center"
+                <td colspan=11 align="center"
                     style="background-color:teal">
                     <b>Game Record</b></td>
             </tr>

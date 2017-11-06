@@ -73,7 +73,9 @@ public class Register extends HttpServlet {
 		}
 		
 		
-		if(!request.getParameter("userFirstName").isEmpty() && !request.getParameter("userLastName").isEmpty() && !request.getParameter("userName").isEmpty() && !request.getParameter("userPass").isEmpty() && !request.getParameter("userEmail").isEmpty()){
+		if(!request.getParameter("userFirstName").isEmpty() && !request.getParameter("userLastName").isEmpty() 
+				&& !request.getParameter("userName").isEmpty() && !request.getParameter("userPass").isEmpty() 
+				&& !request.getParameter("userEmail").isEmpty()){
 			
 			
 			

@@ -1,41 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+   <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link href="<c:url value="/style.css" />" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<style>
+h1 {
+    text-align: center;
+}
+</style>
 </head>
 <body>
-
+<h1> REGISTRATION </h1>
 <%
     if(request.getAttribute("RegisterResult") == "empty" ){
 %>
- <p style="color:red"> Registering Failed. Please try again. Please make sure to fill out the fields in red. </p>
-
-<br><br>
-
-<form action="Register" method="post">  
-<p style="color:red">Username :<input type="text" name="userName"/>		<br/><br/> 
-Password:<input type="password" name="userPass"/>		<br/><br/>     
-First Name:<input type="text" name="userFirstName"/>		<br/><br/>  
-Last Name:<input type="text" name="userLastName"/>		<br/><br/>  
-Email:</p><input type="text" name="userEmail"/>		<br/><br/>  
-Address1:<input type="text" name="userAddress1"/>		<br/><br/>  
-Address2:<input type="text" name="userAddress2"/>		<br/><br/> 
-City:<input type="text" name="userCity"/>		<br/><br/>  
-State(2 letters):<input type="text" name="userState"/><br/><br/> 
-Zip Code:<input type="text" name="userZip"/><br/><br/>
-Country:<input type="text" name="userCountry"/><br/><br/>
-<br/><br/>  
-<input type="submit" value="Register"/>  
-  
-</form> 
+ <p style="color:red"> Registering Failed. Please try again. Please make sure to fill out Username, Password, FirstName, LastName and Email. </p>
 
 <%
 }
 
-else {
+
 %>
 <%
     if(request.getAttribute("RegisterResult") == "false" ){
@@ -49,28 +37,26 @@ else {
  <p style="color:red">Email has the wrong format. Please try again. </p>
 <% } %>
 
-<br><br>
+<br><br><br><br>
 
-<form action="Register" method="post">  
-Username :<input type="text" name="userName"/><br/><br/> 
-Password:<input type="password" name="userPass"/><br/><br/>     
-First Name:<input type="text" name="userFirstName"/><br/><br/>  
-Last Name:<input type="text" name="userLastName"/><br/><br/>  
-Email:<input type="text" name="userEmail"/><br/><br/>  
-Address1:<input type="text" name="userAddress1"/><br/><br/>  
-Address2:<input type="text" name="userAddress2"/><br/><br/> 
-City:<input type="text" name="userCity"/><br/><br/>  
-State(2 letters):<input type="text" name="userState"/><br/><br/> 
-Zip Code:<input type="text" name="userZip"/><br/><br/>
-Country:<input type="text" name="userCountry"/><br/><br/>
-<br/><br/>  
-<input type="submit" value="Register"/>  
-  
+  <div class="form">
+<form class="login-from" action="Register" method="post">  
+<input type="text" placeholder="Username" name="userName"/><br/> 
+<input type="password" placeholder="Password" name="userPass"/><br/>    
+<input type="text" placeholder="First Name" name="userFirstName"/><br/> 
+<input type="text" placeholder="Last Name" name="userLastName"/><br/>  
+<input type="text" placeholder="Email" name="userEmail"/><br/>  
+<input type="text" placeholder="Address 1" name="userAddress1"/><br/><br/>  
+<input type="text" placeholder="Address 2" name="userAddress2"/><br/><br/> 
+<input type="text" placeholder="City name" name="userCity"/><br/><br/>  
+<input type="text" placeholder="State"  name="userState"/><br/><br/> 
+<input type="text" placeholder="Zip Code" name="userZip"/><br/><br/>
+<input type="text"  placeholder="Country" name="userCountry"/><br/><br/>
+<br/>    
+<button type="submit"  value="Register">Register</button>    
 </form> 
+</div>
 
-<%
-}
-%>  
   
 
 

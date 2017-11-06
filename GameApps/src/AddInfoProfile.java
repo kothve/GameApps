@@ -69,7 +69,7 @@ public class AddInfoProfile extends HttpServlet {
 			
 			if(!request.getParameter("userAddress1").isEmpty()){
 				
-				PreparedStatement s1=con.prepareStatement( "update users set address1="+address1+" where username='"+name+"'");  
+				PreparedStatement s1=con.prepareStatement( "update users set address1='"+address1+"' where username='"+name+"'");  
 	    		
 	    		 
 	    		 s1.executeUpdate();
@@ -78,7 +78,7 @@ public class AddInfoProfile extends HttpServlet {
 			}
 			
 			if(!request.getParameter("userAddress2").isEmpty()){
-				PreparedStatement s2=con.prepareStatement( "update users set address2="+address2+" where username='"+name+"'");  
+				PreparedStatement s2=con.prepareStatement( "update users set address2='"+address2+"' where username='"+name+"'");  
 	    		
 	    		 
 	    		 s2.executeUpdate();
@@ -88,7 +88,7 @@ public class AddInfoProfile extends HttpServlet {
 			
 			if(!request.getParameter("userState").isEmpty()){
 				
-				PreparedStatement s3=con.prepareStatement( "update users set city="+city+" where username='"+name+"'");  
+				PreparedStatement s3=con.prepareStatement( "update users set city='"+city+"' where username='"+name+"'");  
 	    		
 	    		 
 	    		 s3.executeUpdate();
@@ -98,7 +98,7 @@ public class AddInfoProfile extends HttpServlet {
 			
 			if(!request.getParameter("userState").isEmpty()){
 				
-				PreparedStatement s4=con.prepareStatement( "update users set state="+state+" where username='"+name+"'");  
+				PreparedStatement s4=con.prepareStatement( "update users set state='"+state+"' where username='"+name+"'");  
 	    		
 	    		 
 	    		 s4.executeUpdate();
@@ -108,7 +108,7 @@ public class AddInfoProfile extends HttpServlet {
 			
 			if(!request.getParameter("userZip").isEmpty()){
 				
-				PreparedStatement s5=con.prepareStatement( "update users set zip="+zip+" where username='"+name+"'");  
+				PreparedStatement s5=con.prepareStatement( "update users set zip='"+zip+"' where username='"+name+"'");  
 	    		
 	    		 
 	    		 s5.executeUpdate();
@@ -119,7 +119,7 @@ public class AddInfoProfile extends HttpServlet {
 			
 			if(!request.getParameter("userCountry").isEmpty()){
 				
-				PreparedStatement s5=con.prepareStatement( "update users set country="+country+" where username='"+name+"'");  
+				PreparedStatement s5=con.prepareStatement( "update users set country='"+country+"' where username='"+name+"'");  
 	    		
 	    		 
 	    		 s5.executeUpdate();
@@ -177,9 +177,16 @@ public class AddInfoProfile extends HttpServlet {
         
         
         if(!request.getParameter("creditCard").isEmpty() && !request.getParameter("creditCardCVV").isEmpty() && !request.getParameter("creditCardNumber").isEmpty() 
-        		&&  !request.getParameter("creditCardExpiration").isEmpty() ){
+        		&&  !request.getParameter("creditCardExpiration").isEmpty()){
         	
+        	if(CVV.length() != 3 || creditCardNumber.length() != 16 || creditCardExpiration.length() != 4 ){
+            	
+            	
+            	request.setAttribute("CreditCardInfo", "invalid");
+            	
+            }
         	
+        	else{
         	ArrayList userCreditCard = new ArrayList();      
     		PreparedStatement ss=con.prepareStatement( "update users set credit_card_type='"+creditCard+"', credit_card_number='"+creditCardNumber+
     				"', credit_card_cvv='"+CVV +"',credit_card_expiry='"+creditCardExpiration+"' where username='"+name+"'");  
@@ -187,57 +194,59 @@ public class AddInfoProfile extends HttpServlet {
     		 
     		 ss.executeUpdate(); 
     		
-    		request.setAttribute("CreditCardRegistered", "yes");
-    		ShowCreditCardInfo = true;	
+    		request.setAttribute("CreditCardInfo", "valid");
+        	}
     		
-            }
+    		
+    		 ArrayList userCardInfo = new ArrayList(); 
+        	   
+    	        
+    	        PreparedStatement fs=con.prepareStatement("select credit_card_type, credit_card_number, credit_card_cvv, "
+    	        		+ "credit_card_expiry from users where username=?");  
+    	        		fs.setString(1,name);  
+    	        		 
+    	        		ArrayList a2 = null;   
+    	        		ResultSet cs=fs.executeQuery();  
+    	        		while (cs.next()) {
+    	                    a2 = new ArrayList<String>();
+
+//    	                    out.println(rs.getString(1));
+//    	                    out.println(rs.getString(2));
+//    	                    out.println(rs.getString(3));
+//    	                    out.println(rs.getString(4));
+    	                    a2.add(cs.getString(1));
+    	                    a2.add(cs.getString(2));
+    	                    a2.add(cs.getString(3));
+    	                    a2.add(cs.getString(4));
+    	                    
+    	                    
+
+    	                    
+    	                    userCardInfo.add(a2);
+    	                }
+    	        		request.setAttribute("userCardInfo", userCardInfo);
+    		
+        }
+    		
+    		
+        	//}
             
-        
+            
+       
         
         //show credit card info
         
         
-        if(ShowCreditCardInfo = true){
-        ArrayList userCardInfo = new ArrayList(); 
+       
         
-        
-        PreparedStatement fs=con.prepareStatement(  
-        		"select credit_card_type, credit_card_number, credit_card_cvv, credit_card_expiry  from users where username=?");  
-        		fs.setString(1,name);  
-        		 
-        		ArrayList a2 = null;   
-        		ResultSet cs=fs.executeQuery();  
-        		while (cs.next()) {
-                    a2 = new ArrayList<String>();
-
-//                    out.println(rs.getString(1));
-//                    out.println(rs.getString(2));
-//                    out.println(rs.getString(3));
-//                    out.println(rs.getString(4));
-                    a2.add(cs.getString(1));
-                    a2.add(cs.getString(2));
-                    a2.add(cs.getString(3));
-                    a2.add(cs.getString(4));
-                    
-                    
-
-                    
-                    userCardInfo.add(a2);
-                }
-        		request.setAttribute("userCardInfo", userCardInfo);
-        }
-        		
+		
                 request.setAttribute("userProfileList", userProfileList);
                 RequestDispatcher view = request.getRequestDispatcher("/Profile.jsp");
                 view.forward(request, response); 
        	
        	
         	
-        
-        
-        
-        
-        
+ 
         
         
         
