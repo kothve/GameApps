@@ -15,6 +15,12 @@
 			<servlet-name>Register</servlet-name>
 			<url-pattern>/Register</url-pattern>
 		</servlet-mapping>
+		
+	
+	
+	
+		
+		
 	
 	<servlet>  
     <description></description>  
@@ -66,7 +72,27 @@
         <url-pattern>/Specials</url-pattern>
     </servlet-mapping>
     
+    <servlet>  
+    <description></description>  
+    <display-name>ResetPassword</display-name>  
+    <servlet-name>ResetPassword</servlet-name>  
+    <servlet-class>ResetPassword</servlet-class>  
+  </servlet>  
+  <servlet-mapping>  
+    <servlet-name>ResetPassword</servlet-name>  
+    <url-pattern>/ResetPassword</url-pattern>  
+  </servlet-mapping>  	
     
+    <servlet>  
+    <description></description>  
+    <display-name>SendEmail</display-name>  
+    <servlet-name>SendEmail</servlet-name>  
+    <servlet-class>SendEmail</servlet-class>  
+  </servlet>  
+  <servlet-mapping>  
+    <servlet-name>SendEmail</servlet-name>  
+    <url-pattern>/SendEmail</url-pattern>  
+  </servlet-mapping>  	
     
     
     

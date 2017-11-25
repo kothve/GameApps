@@ -37,54 +37,68 @@ public void doPost(HttpServletRequest request, HttpServletResponse response)
     String password =request.getParameter("password");  
     RequestDispatcher rd = null;      
     
-    if(Login.validate(username, password)){  //uthentication
-    	
-    	//display all the database items
-    	try{  
-    		
-    		String url = "jdbc:mysql://localhost/soen387";
-    		String username1 = "o_mercie";
-    		String password1 = "odette";
-    		
-    		Class.forName("com.mysql.jdbc.Driver");
-    		
-    		
-    		
-    	Connection con=DriverManager.getConnection(url,username1,password1); 
+    if(LoginTemp.exist(username)){
+    
     	
     	
-    	String statement = "select games_id, game_name, console, price from games";
-    	PreparedStatement ps=con.prepareStatement(statement);
+    	if(LoginTemp.validate(username, password)){
+    		
+    		
+    		ArrayList gameList = LoadGames.AddGames();	
+    		
+    		HttpSession session = request.getSession(true);
+        	
+        	
+        	rd = request.getRequestDispatcher("Success.jsp");
+        	 request.setAttribute("gameList", gameList);  	
+        	session.setAttribute("user", username);
+        	
+        	session.setMaxInactiveInterval(1000);   
+        	rd = request.getRequestDispatcher("Success.jsp");
+        	 rd.forward(request, response);
+    		
+    		
+    		
+    		
+    		
+    	}//end if loginTemp 	
     	
-    	 ResultSet rs=ps.executeQuery();
+    	else if(IncrementLogging.getNumberOfAttempts(username) >= 3){
+    		
+    		IncrementLogging.Lock(username);
+    		request.setAttribute("TempLogging", "locked"); 
+    		 rd = request.getRequestDispatcher("Login.jsp");  
+    	       rd.include(request, response);
+    		
+    	}
+    	
+    	
+    	
+    	else if(IncrementLogging.getNumberOfAttempts(username) <3 ) {
+    	
+    	IncrementLogging.Increment(username);
+    		
+    	request.setAttribute("TempLogging", "failed");  
     	 
-    	 
-    	 ArrayList al = null;
-         
-         ArrayList gameList = new ArrayList();
-         
-         
-         while (rs.next()) {
-             al = new ArrayList<String>();
-            
-
-//             out.println(rs.getString(1));
-//             out.println(rs.getString(2));
-//             out.println(rs.getString(3));
-//             out.println(rs.getString(4));
-             al.add(rs.getString(1));
-             al.add(rs.getString(2));
-             al.add(rs.getString(3));
-             al.add(rs.getString(4));
-             
-             
-             gameList.add(al);
-             
-         }
-    	 
-    	 
-    	 
-    	 
+    	
+       rd = request.getRequestDispatcher("Login.jsp");  
+       rd.include(request, response);
+       
+       
+    	}//end else
+    	
+    }//end if reset
+    
+    
+    
+    
+   
+    
+    
+    else if(Login.validate(username, password)){  //uthentication
+    	 	
+    	   	 
+    	 ArrayList gameList = LoadGames.AddGames();
     	 
     	 
     	 
@@ -100,9 +114,9 @@ public void doPost(HttpServletRequest request, HttpServletResponse response)
     	rd = request.getRequestDispatcher("Success.jsp");
     	 rd.forward(request, response);
     	//response.sendRedirect("Success.jsp");
-    	 con.close();
+    	 
         
-    }catch(Exception e){System.out.println(e); }    }
+    }    
     	 	
     	
     else{  

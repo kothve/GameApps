@@ -33,13 +33,40 @@ p {
 <input type="text" placeholder="Username" name="username"><br>  
 <input type="password" placeholder="Password"name="password"><br>  
 <button type="submit" formmethod="post" value="Login">Login</button>  
-<p class="message">Not registered? <a href="Register.jsp">Create an account</a></p>
+<p class="message">Not registered? <a href="Register.jsp">Create an account</a></p><br>
+<p class="message"><a href="ForgottenPassword.jsp">Forgot Password?.</a></p>
 
 <%
     if(request.getAttribute("RegisterResult") == "successful"){
 %>
  <p style="color:red">You have successfully registered. Please log in now. </p>
 <%
+}
+%>
+
+<%
+    if(request.getAttribute("ResetPassword") == "successful"){
+%>
+ <p style="color:red">New password has been sent by email. </p>
+<%
+
+}
+%>
+
+<%
+    if(request.getAttribute("TempLogging") == "failed"){
+%>
+ <p style="color:red">Temp Login Failed. Only 3 tries until account is locked. </p>
+<%
+
+}
+%>
+<%
+    if(request.getAttribute("TempLogging") == "locked"){
+%>
+ <p style="color:red">Account is locked. </p>
+<%
+
 }
 %>
 
