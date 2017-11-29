@@ -50,9 +50,11 @@ header{
     
     
     <div class="header-center">
-        <form class="form"  action="ProfileServlet" method="post"><button type="submit" formmethod="post" value="Profile">See Profile</button></form>
+        <form class="form"  action="ProfileServlet" method="post"><button type="submit" formmethod="post" value="Profile">Admin Panel</button></form>
     </div>
-    
+    <div class="header-right"><form  class="form" action="LogoutServlet" method="post"> <button type="submit" formmethod="post" value="Logout">
+    Logout
+    </button></form></div>
 
 
 
@@ -65,30 +67,35 @@ header{
 
 
  <div  id="left"  class="form">
-<form   class="login-from" method="post" action="Search">
-      
-Game ID:<input type="text" name="game_Id"/>  
- Game Name:<input type="text" name="game_Name"/>  
+<form   class="login-from" method="post" action="EditAddGame">
+ <p> EDIT OR ADD GAME <p>     
+ 
+ Game Name (mandatory):<input type="text" name="game_Name"/>  
+ Game Description:<input type="text" name="description"/> 
  Console :<input type="text" name="console"/> 
+ Number of players :<input type="number" name="players"/>
+ Coop (yes/no) : :<input type="text" name="coop"/>
 Genre:<input type="text" name="genre"/> 
 Year of release:<input type="text" name="year"/> 
 Developer:<input type="text" name="developer"/>  
 Publisher:<input type="text" name="publisher"/>
+Price:<input type="text" name="price"/>
+Discount:<input type="text" name="discount"/>
+Quantity:<input type="number" name="quantity"/>
 
 
 
 <br/> 
-<button type="submit" formmethod="post" value="Search">Search</button>       
+<button type="submit" formmethod="post" value="EditAddGame">Edit or Add Game</button>       
       
     </form>	
 </div>	
 
 	
-	
 <table id="right" width="100%" align="center"
                style="border:1px solid #000000;">
             <tr>
-                <td colspan=5 align="center"
+                <td colspan=4 align="center"
                     style="background-color:teal">
                     <b>All Games</b></td>
             </tr>
@@ -97,7 +104,7 @@ Publisher:<input type="text" name="publisher"/>
                 <td><b>Game Name</b></td>             
                 <td><b>Console</b></td>               
                  <td><b>Price</b></td>
-                <td><b>Cart</b></td>
+                
             </tr>
             <%
                 int count = 0;
@@ -119,9 +126,7 @@ Publisher:<input type="text" name="publisher"/>
                 <td><%=gameList.get(1)%></td>
                 <td><%=gameList.get(2)%></td>               
                 <td><%=gameList.get(3)%></td>
-                <td><form method="post" action="AddToCart"><input type="hidden" name="game_name" value="<%=gameList.get(1)%>">
-                <input type="hidden" name="price" value="<%=gameList.get(3)%>"><input type="hidden" name="initialQuantity" value="1"> 
-                <input type="submit" value="Add to Cart"/> </form> </td>  
+                
                 
                 
                 
@@ -138,9 +143,7 @@ Publisher:<input type="text" name="publisher"/>
             <%            }
             %>
         </table>
-
-
-
+	
 
 
 

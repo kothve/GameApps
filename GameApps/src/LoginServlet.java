@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.ServletException;  
 import javax.servlet.http.HttpServlet;  
@@ -35,9 +36,30 @@ public void doPost(HttpServletRequest request, HttpServletResponse response)
           
     String username = request.getParameter("username");  
     String password =request.getParameter("password");  
-    RequestDispatcher rd = null;      
+    RequestDispatcher rd = null;   
     
-    if(LoginTemp.exist(username)){
+  //testing
+	
+	
+    
+    if (IncrementLogging.isLocked(username)){
+    	
+    	
+    	request.setAttribute("TempLogging", "locked"); 
+		 rd = request.getRequestDispatcher("Login.jsp");  
+	       rd.include(request, response);
+    	
+    	
+    	
+    	
+    }
+    
+    
+    
+	
+	//
+    
+    else if(LoginTemp.exist(username)){
     
     	
     	
@@ -49,7 +71,7 @@ public void doPost(HttpServletRequest request, HttpServletResponse response)
     		HttpSession session = request.getSession(true);
         	
         	
-        	rd = request.getRequestDispatcher("Success.jsp");
+        	AdminCheck.addLogin(username);
         	 request.setAttribute("gameList", gameList);  	
         	session.setAttribute("user", username);
         	
@@ -95,9 +117,28 @@ public void doPost(HttpServletRequest request, HttpServletResponse response)
    
     
     
-    else if(Login.validate(username, password)){  //uthentication
+    	
     	 	
-    	   	 
+    	else if(Login.validate(username, password)){  //uthentication
+    	
+    		
+    		if(AdminCheck.AdminCheck(username)){
+    			
+    			
+    			HttpSession session = request.getSession(true);
+    			ArrayList gameList = LoadGames.AddGames();
+    			
+    			 request.setAttribute("gameList", gameList);  
+    			session.setAttribute("user", username);
+    			session.setMaxInactiveInterval(1000);   
+    	    	rd = request.getRequestDispatcher("AdminSuccess.jsp");
+    	    	 rd.forward(request, response);
+    			
+    			
+    			
+    		}
+    		
+    		else{	
     	 ArrayList gameList = LoadGames.AddGames();
     	 
     	 
@@ -105,7 +146,7 @@ public void doPost(HttpServletRequest request, HttpServletResponse response)
     	
     	HttpSession session = request.getSession(true);
     	
-    	
+    	AdminCheck.addLogin(username);
     	rd = request.getRequestDispatcher("Success.jsp");
     	 request.setAttribute("gameList", gameList);  	
     	session.setAttribute("user", username);
@@ -114,7 +155,7 @@ public void doPost(HttpServletRequest request, HttpServletResponse response)
     	rd = request.getRequestDispatcher("Success.jsp");
     	 rd.forward(request, response);
     	//response.sendRedirect("Success.jsp");
-    	 
+    		}
         
     }    
     	 	

@@ -97,5 +97,35 @@ PreparedStatement r1=con.prepareStatement( "update users set locked='"+yes+"' wh
 	} 
 		
 		
-}
+
+public static boolean isLocked(String name){
+	boolean status=false;  
+	try{  
 		
+		String url = "jdbc:mysql://localhost/soen387";
+		String username = "o_mercie";
+		String password = "odette";
+		
+		Class.forName("com.mysql.jdbc.Driver");
+		
+		Connection con=DriverManager.getConnection(url,username,password); 	
+		
+	
+
+PreparedStatement ps=con.prepareStatement(  
+"select * from users where username=? and locked='yes'");  
+ps.setString(1,name);  
+
+      
+ResultSet rs=ps.executeQuery();  
+status=rs.next();  
+	      
+	
+	          
+	}catch(Exception e){System.out.println(e);}
+	return status;  
+	
+	} 
+	
+
+}	

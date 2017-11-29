@@ -88,7 +88,7 @@ view.forward(request, response);
 
 
 
-conn.close();
+con.close();
 System.out.println("Disconnected!");
 
 } catch (Exception e) {

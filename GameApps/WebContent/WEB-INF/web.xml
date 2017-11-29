@@ -17,9 +17,9 @@
 		</servlet-mapping>
 		
 	
+
 	
-	
-		
+
 		
 	
 	<servlet>  
@@ -123,6 +123,100 @@
 			
 			
 			
+	<servlet>  
+    <description></description>  
+    <display-name>EditAddGame</display-name>  
+    <servlet-name>EditAddGame</servlet-name>  
+    <servlet-class>EditAddGame</servlet-class>  
+  </servlet>
+
+			
+		<servlet-mapping>  
+    <servlet-name>EditAddGame</servlet-name>  
+    <url-pattern>/EditAddGame</url-pattern>  
+  </servlet-mapping>
+			
+	<servlet>  
+    <description></description>  
+    <display-name>UserInfo</display-name>  
+    <servlet-name>UserInfo</servlet-name>  
+    <servlet-class>UserInfo</servlet-class>  
+  </servlet>
+
+			
+		<servlet-mapping>  
+    <servlet-name>UserInfo</servlet-name>  
+    <url-pattern>/UserInfo</url-pattern>  
+  </servlet-mapping>		
+			
+	
+	<servlet>  
+    <description></description>  
+    <display-name>blockUser</display-name>  
+    <servlet-name>blockUser</servlet-name>  
+    <servlet-class>blockUser</servlet-class>  
+  </servlet>
+
+			
+		<servlet-mapping>  
+    <servlet-name>blockUser</servlet-name>  
+    <url-pattern>/blockUser</url-pattern>  
+  </servlet-mapping>
+  
+  <servlet>  
+    <description></description>  
+    <display-name>AddToCart</display-name>  
+    <servlet-name>AddToCart</servlet-name>  
+    <servlet-class>AddToCart</servlet-class>  
+  </servlet>
+
+			
+		<servlet-mapping>  
+    <servlet-name>AddToCart</servlet-name>  
+    <url-pattern>/AddToCart</url-pattern>  
+  </servlet-mapping>
+	
+	<servlet>  
+    <description></description>  
+    <display-name>ChangeQuantity</display-name>  
+    <servlet-name>ChangeQuantity</servlet-name>  
+    <servlet-class>ChangeQuantity</servlet-class>  
+  </servlet>
+
+			
+		<servlet-mapping>  
+    <servlet-name>ChangeQuantity</servlet-name>  
+    <url-pattern>/ChangeQuantity</url-pattern>  
+  </servlet-mapping>
+			
+	
+	<servlet>  
+    <description></description>  
+    <display-name>EmptyCart</display-name>  
+    <servlet-name>EmptyCart</servlet-name>  
+    <servlet-class>EmptyCart</servlet-class>  
+  </servlet>
+
+			
+		<servlet-mapping>  
+    <servlet-name>EmptyCart</servlet-name>  
+    <url-pattern>/EmptyCart</url-pattern>  
+  </servlet-mapping>
+			
+			
+	<servlet>  
+    <description></description>  
+    <display-name>CheckOut</display-name>  
+    <servlet-name>CheckOut</servlet-name>  
+    <servlet-class>CheckOut</servlet-class>  
+  </servlet>
+
+			
+		<servlet-mapping>  
+    <servlet-name>CheckOut</servlet-name>  
+    <url-pattern>/CheckOut</url-pattern>  
+  </servlet-mapping>
+					
 			
 			
 			

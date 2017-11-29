@@ -44,7 +44,7 @@ public class Specials extends HttpServlet {
 	
 	 
          
-         PreparedStatement ps=con.prepareStatement("select * from games where discount IS NOT NULL");
+         PreparedStatement ps=con.prepareStatement("select * from games where NOT discount = '0'");
          
          
          
@@ -82,7 +82,7 @@ public class Specials extends HttpServlet {
          request.setAttribute("gameInt", gameInt);
          RequestDispatcher view = request.getRequestDispatcher("/Specials.jsp");
          view.forward(request, response);
-         conn.close();
+         con.close();
          }
         catch (Exception e) {
             e.printStackTrace();

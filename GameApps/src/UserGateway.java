@@ -181,9 +181,11 @@ public class UserGateway {
 		this.credit_card_expiry = credit_card_expiry;
 	}
 
-	public String getLast_login() {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-		return dateFormat.format(last_login);
+	public Date getLast_login() {
+		/*DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		return dateFormat.format(last_login);*/
+		
+		return last_login;
 	}
 
 	public void setLast_login(Date last_login) {
