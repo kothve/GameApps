@@ -62,9 +62,9 @@
                 <td><%=specialList.get(7)%></td>
                 <td><%=specialList.get(8)%></td>
                 <td><%=specialList.get(9)%>$</td>
-                <td><form method="post" action="AddToCart"><input type="hidden" name="game_name" value="<%=specialList.get(1)%>">
-                <input type="hidden" name="price" value="<%=specialList.get(9)%>"><input type="hidden" name="initialQuantity" value="1"> 
-                <input type="submit" value="Add to Cart"/> </form> </td>  
+                <td><form method="post" action="RemoveSpecial"><input type="hidden" name="game_name" value="<%=specialList.get(1)%>">
+                
+                <input type="submit" value="Remove From Specials"/> </form> </td>  
                 
                 
             </tr>

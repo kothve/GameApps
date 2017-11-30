@@ -33,6 +33,34 @@ public class AdminOperation {
 		
 	}
 	
+	
+public static void updateDiscount(String game_name, String discount) throws ClassNotFoundException{
+		
+		
+		GameGateway game = new GameGateway();
+		
+		game.setGame_name(game_name);	
+		game.setDiscount(discount);
+		
+			
+		
+		game.updateDiscount();
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 public static void insertGames(String game_name, String console, int players, String genre, String year, String developer, String publisher, String price, String discount, int quantity, String description) throws ClassNotFoundException{
 		
 		

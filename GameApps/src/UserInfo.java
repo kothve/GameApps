@@ -27,6 +27,12 @@ public class UserInfo  extends HttpServlet {
 		login.add(login1);
 		
 		
+		ArrayList purchaseList = new ArrayList();
+		
+		purchaseList = AdminCheck.userPurchase(username);
+		request.setAttribute("Purchase", purchaseList); 
+		
+		
 		
 		
 		request.setAttribute("LoginDate", login); 

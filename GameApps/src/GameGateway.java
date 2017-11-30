@@ -348,6 +348,51 @@ public class GameGateway {
 			
 		}
 	}
+
+	public synchronized void updateDiscount()  throws ClassNotFoundException {
+		
+		
+		try {
+			String url = "jdbc:mysql://localhost/soen387";
+			String username1 = "o_mercie";
+			String password1 = "odette";
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			
+			Connection con=DriverManager.getConnection(url,username1,password1); 	
+	
+			String statement = "UPDATE `games` SET `discount`=? where `game_name`=?";
+			
+			
+			java.sql.PreparedStatement dbStatement = con.prepareStatement(statement);
+			dbStatement.setString(1, this.discount);
+			
+			dbStatement.setString(2, this.game_name);
+			
+			dbStatement.executeUpdate();
+			
+			
+			
+			con.close();
+			
+		} catch (SQLException e) {
+			// We don`t want any types which use the Active Record
+			// to be coupled to java.sql.SQLException
+			// So instead, we throw a custom ActiveRecordException 
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
 	
 	
 	

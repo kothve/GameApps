@@ -95,11 +95,6 @@
 	<button type="submit" formmethod="post" value="UserInfo">Get User info</button> 
 	</form>  
 </div>
-
-   <div class="form">
- 
-     
-    
 <table width="90%" align="center"
                style="border:1px solid #000000;">
             <tr>
@@ -146,6 +141,68 @@
             <%            }
             %>
         </table>
+        
+        <table width="90%" align="center"
+               style="border:1px solid #000000;">
+            <tr>
+                <td colspan=11 align="center"
+                    style="background-color:teal">
+                    <b>Purchase History</b></td>
+            </tr>
+            <tr style="background-color:lightgrey;">
+                <td><b>Username</b></td>
+                <td><b>Game Name</b></td>
+                
+            </tr>
+            <%
+                int count2 = 0;
+                String color2 = "#F9EBB3";
+                if (request.getAttribute("Purchase") != null) {
+                    ArrayList al = (ArrayList) request.getAttribute("Purchase");
+                    
+                    Iterator itr = al.iterator();
+                    while (itr.hasNext()) {
+ 
+                        if ((count2 % 2) == 0) {
+                            color2 = "#eeffee";
+                        }
+                        count2++;
+                        ArrayList userProfileList = (ArrayList) itr.next();
+            %>
+            <tr style="background-color:<%=color%>;">
+                <td><%=userProfileList.get(0)%></td>
+                <td><%=userProfileList.get(1)%></td>
+                
+                                
+                
+            </tr>
+            <%
+                    }
+                }
+                if (count2 == 0) {
+            %>
+            <tr>
+                <td colspan=4 align="center"
+                    style="background-color:#eeffee"><b>No Record Found..</b></td>
+            </tr>
+            <%            }
+            %>
+        </table>
+
+
+
+
+
+
+   <div class="form">
+ 
+     
+    
+
+        
+        
+        
+        
         <br>
         <br> 
      
@@ -157,8 +214,10 @@
      
      
     <form class="login-from" action="blockUser" method="post">  
-    Username <input type="text" name="username"/><br>     	
-	<button type="submit" formmethod="post" value="blockUser">Block User</button> 
+    Block Username <input type="text" name="blockusername"/><br>  
+    Unblock Username <input type="text" name="unblockusername"/><br>  
+       	
+	<button type="submit" formmethod="post" value="blockUser">Block/Unblock User</button> 
 	</form>  
 </div>
      <br><br>
@@ -170,7 +229,13 @@
 <%
 }
 %>  
-    
+    <%
+     if(request.getAttribute("Locked") == "no"){
+%>
+ <p style="color:red">You have successfully unlocked user. </p>
+<%
+}
+%>  
     
     
     

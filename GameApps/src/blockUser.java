@@ -14,14 +14,27 @@ public class blockUser  extends HttpServlet {
                           throws ServletException, IOException {  
 	
 	
-		String username = request.getParameter("username");  
-	
+		String username = request.getParameter("blockusername");  
+		String username1 = request.getParameter("unblockusername"); 
+		
+		
+		if(!request.getParameter("blockusername").isEmpty()){
 		IncrementLogging.Lock(username);
+		request.setAttribute("Locked", "yes"); }
+		
+		else{
+			
+			IncrementLogging.Unlock(username1);
+			request.setAttribute("Locked", "no"); 
+		}
+		
+		
+		
 		
 		
 	
 		
-		request.setAttribute("Locked", "yes"); 
+		
 		
 		
 		

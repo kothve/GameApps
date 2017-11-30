@@ -108,6 +108,7 @@
      
      
     <form class="login-from" action="AddInfoProfile" method="post">  
+    Password:<input type="text" name="password"/><br/><br/>  
 	Address1:<input type="text" name="userAddress1"/><br/><br/>  
 	Address2:<input type="text" name="userAddress2"/><br/><br/> 
 	City:<input type="text" name="userCity"/><br/><br/>  

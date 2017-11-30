@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class Specials extends HttpServlet {
 
@@ -18,75 +19,63 @@ public class Specials extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html");
        
-        Connection conn = null;
-        String url = "jdbc:mysql://localhost/soen387";
-    	String username = "o_mercie";
-    	String password = "odette";
-    	
-    	int gameInt = 1;
-    	
-    	
-    	
-    
- 
+        String name = null;
         
-        try {
-        	Class.forName("com.mysql.jdbc.Driver");
-        	Connection con=DriverManager.getConnection(url,username,password); 
-            //System.out.println("Connected!");
+        HttpSession session = request.getSession(false);  
+        if (session != null) {
+ 			if (session.getAttribute("user") != null) {
+ 				 name = (String) session.getAttribute("user");
+ 				
+ 			} else {
+ 				response.sendRedirect("Index.jsp");
+ 			}
+ 		}
+        
+        
+        
+        
+        
+        
+        
+        if(AdminCheck.AdminCheck(name)){
+        	
+        	
+        	
+        	ArrayList specialList = LoadGames.SpecialGames();
             
         	
+            
+            request.setAttribute("specialList", specialList);
+            request.setAttribute("gameInt", 3);
+            RequestDispatcher view = request.getRequestDispatcher("/AdminSpecials.jsp");
+            view.forward(request, response);
         	
         	
         	
-            ArrayList al = null;
-            ArrayList specialList = new ArrayList();
-	
-	 
+        	
+        	
+        	
+        	
+        	
+        }
+        
+        
+        
+        
+        else{
+        
          
-         PreparedStatement ps=con.prepareStatement("select * from games where NOT discount = '0'");
-         
-         
-         
-         
-     
-     ResultSet rs=ps.executeQuery();
-         
-         
-         
-         while (rs.next()) {
-             al = new ArrayList<String>();
-
-//             out.println(rs.getString(1));
-//             out.println(rs.getString(2));
-//             out.println(rs.getString(3));
-//             out.println(rs.getString(4));
-             al.add(rs.getString(1));
-             al.add(rs.getString(2));
-             al.add(rs.getString(3));
-             al.add(rs.getString(4));
-             gameInt = rs.getInt(5);
-             al.add(rs.getString(6));
-             al.add(rs.getString(7));
-             al.add(rs.getString(8));
-             al.add(rs.getString(9));
-             al.add(rs.getString(10));
-             
-             al.add(rs.getString(12));
-
-             
-             specialList.add(al);
-         }
+        ArrayList specialList = LoadGames.SpecialGames();
+        
+        	
          
          request.setAttribute("specialList", specialList);
-         request.setAttribute("gameInt", gameInt);
+         request.setAttribute("gameInt", 3);
          RequestDispatcher view = request.getRequestDispatcher("/Specials.jsp");
          view.forward(request, response);
-         con.close();
+         
          }
-        catch (Exception e) {
-            e.printStackTrace();
-        }    
+        
 	 
 	
 	
@@ -94,8 +83,8 @@ public class Specials extends HttpServlet {
          
         
         
-        
+	}  
   
         
         
-}
+

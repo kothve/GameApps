@@ -59,13 +59,26 @@ public class AddInfoProfile extends HttpServlet {
 			
 			
 			
-			
+			String userPassword = request.getParameter("password");
 			String address1=request.getParameter("userAddress1");							
 			String address2=request.getParameter("userAddress2");
 			String city=request.getParameter("userCity");
 			String state=request.getParameter("userState");
 			String zip=request.getParameter("userZip");
 			String country=request.getParameter("userCountry");
+			
+			
+if(!request.getParameter("password").isEmpty()){
+				
+				PreparedStatement s1=con.prepareStatement( "update users set password='"+userPassword+"' where username='"+name+"'");  
+	    		
+	    		 
+	    		 s1.executeUpdate();
+				
+				
+			}
+			
+			
 			
 			if(!request.getParameter("userAddress1").isEmpty()){
 				

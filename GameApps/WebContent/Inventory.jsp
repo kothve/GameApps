@@ -45,17 +45,18 @@ header{
 </head>
 <body>
 <header>
-   <div class="header-left"><a href="Specials"><img border="0" alt="sales" src="<%=request.getContextPath()%>/images/sales.jpeg" width="100" height="100"></a> </div>
-    
-    
+    <div class="header-left"><a href="Specials"><img border="0" alt="sales" src="<%=request.getContextPath()%>/images/sales.jpeg" width="100" height="100"></a> </div>
     
     <div class="header-center">
-        <form class="form"  action="ProfileServlet" method="post"><button type="submit" formmethod="post" value="Profile">Profile Panel</button></form>
+        <form class="form"  action="Inventory" method="post"><button type="submit" formmethod="post" value="Invetory">Inventory</button></form>
+    </div>
+    
+    <div class="header-center">
+        <form class="form"  action="ProfileServlet" method="post"><button type="submit" formmethod="post" value="Profile">Admin Panel</button></form>
     </div>
     <div class="header-right"><form  class="form" action="LogoutServlet" method="post"> <button type="submit" formmethod="post" value="Logout">
     Logout
     </button></form></div>
-    
 
 
 
@@ -67,48 +68,30 @@ header{
 
 
 
- <div  id="left"  class="form">
-<form   class="login-from" method="post" action="Search">
-      
-Game ID:<input type="text" name="game_Id"/>  
- Game Name:<input type="text" name="game_Name"/>  
- Console :<input type="text" name="console"/> 
-Genre:<input type="text" name="genre"/> 
-Year of release:<input type="text" name="year"/> 
-Developer:<input type="text" name="developer"/>  
-Publisher:<input type="text" name="publisher"/>
 
-
-
-<br/> 
-<button type="submit" formmethod="post" value="Search">Search</button>       
-      
-    </form>	
-</div>	
-
-	
 	
 <table id="right" width="100%" align="center"
                style="border:1px solid #000000;">
             <tr>
-                <td colspan=5 align="center"
+                <td colspan=4 align="center"
                     style="background-color:teal">
                     <b>All Games</b></td>
             </tr>
             <tr style="background-color:lightgrey;">
-                <td><b>Game ID</b></td>
-                <td><b>Game Name</b></td>             
-                <td><b>Console</b></td>               
-                 <td><b>Price</b></td>
-                <td><b>Cart</b></td>
+                <td><b>Game Name</b></td>
+                <td><b>Quantity</b></td>             
+                
+                
             </tr>
             <%
                 int count = 0;
                 String color = "#F9EBB3";
                 if (request.getAttribute("gameList") != null) {
                     ArrayList al = (ArrayList) request.getAttribute("gameList");
+                    ArrayList a2 = (ArrayList) request.getAttribute("quantity");
                     System.out.println(al);
                     Iterator itr = al.iterator();
+                    Iterator itr2 = a2.iterator();
                     while (itr.hasNext()) {
  
                         if ((count % 2) == 0) {
@@ -116,15 +99,14 @@ Publisher:<input type="text" name="publisher"/>
                         }
                         count++;
                         ArrayList gameList = (ArrayList) itr.next();
+                        ArrayList quantity = (ArrayList) itr2.next();
             %>
             <tr style="background-color:<%=color%>;">           
-            	<td><form method="post" action="DetailedInfo"><input type="hidden" name="gameID" value="<%=gameList.get(0)%>"> <input type="submit" value="<%=gameList.get(0)%>"/> </form> </td>  
-                <td><%=gameList.get(1)%></td>
-                <td><%=gameList.get(2)%></td>               
-                <td><%=gameList.get(3)%>$</td>
-                <td><form method="post" action="AddToCart"><input type="hidden" name="game_name" value="<%=gameList.get(1)%>">
-                <input type="hidden" name="price" value="<%=gameList.get(3)%>"><input type="hidden" name="initialQuantity" value="1"> 
-                <input type="submit" value="Add to Cart"/> </form> </td>  
+            	
+                <td><%=gameList.get(0)%></td>
+                <td><%=quantity.get(0)%></td>               
+                
+                
                 
                 
                 
@@ -141,9 +123,7 @@ Publisher:<input type="text" name="publisher"/>
             <%            }
             %>
         </table>
-
-
-
+	
 
 
 

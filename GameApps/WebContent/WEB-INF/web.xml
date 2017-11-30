@@ -216,9 +216,48 @@
     <servlet-name>CheckOut</servlet-name>  
     <url-pattern>/CheckOut</url-pattern>  
   </servlet-mapping>
-					
+  
+  
+  <servlet>  
+    <description></description>  
+    <display-name>Pay</display-name>  
+    <servlet-name>Pay</servlet-name>  
+    <servlet-class>Pay</servlet-class>  
+  </servlet>
+
 			
+		<servlet-mapping>  
+    <servlet-name>Pay</servlet-name>  
+    <url-pattern>/Pay</url-pattern>  
+  </servlet-mapping>
+  
+	<servlet>  
+    <description></description>  
+    <display-name>RemoveSpecial</display-name>  
+    <servlet-name>RemoveSpecial</servlet-name>  
+    <servlet-class>RemoveSpecial</servlet-class>  
+  </servlet>
+
 			
+		<servlet-mapping>  
+    <servlet-name>RemoveSpecial</servlet-name>  
+    <url-pattern>/RemoveSpecial</url-pattern>  
+  </servlet-mapping>
+  				
+			
+		<servlet>  
+    <description></description>  
+    <display-name>Inventory</display-name>  
+    <servlet-name>Inventory</servlet-name>  
+    <servlet-class>Inventory</servlet-class>  
+  </servlet>
+
+			
+		<servlet-mapping>  
+    <servlet-name>Inventory</servlet-name>  
+    <url-pattern>/Inventory</url-pattern>  
+  </servlet-mapping>
+  					
 			
 
 			

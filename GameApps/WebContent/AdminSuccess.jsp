@@ -47,7 +47,9 @@ header{
 <header>
     <div class="header-left"><a href="Specials"><img border="0" alt="sales" src="<%=request.getContextPath()%>/images/sales.jpeg" width="100" height="100"></a> </div>
     
-    
+    <div class="header-center">
+        <form class="form"  action="Inventory" method="post"><button type="submit" formmethod="post" value="Invetory">Inventory</button></form>
+    </div>
     
     <div class="header-center">
         <form class="form"  action="ProfileServlet" method="post"><button type="submit" formmethod="post" value="Profile">Admin Panel</button></form>
@@ -125,7 +127,7 @@ Quantity:<input type="number" name="quantity"/>
             	<td><form method="post" action="DetailedInfo"><input type="hidden" name="gameID" value="<%=gameList.get(0)%>"> <input type="submit" value="<%=gameList.get(0)%>"/> </form> </td>  
                 <td><%=gameList.get(1)%></td>
                 <td><%=gameList.get(2)%></td>               
-                <td><%=gameList.get(3)%></td>
+                <td><%=gameList.get(3)%>$</td>
                 
                 
                 

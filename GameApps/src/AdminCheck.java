@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -189,4 +190,85 @@ try{
 			}
 	
 	
+
+
+
+public static ArrayList userPurchase(String name){
+	
+	ArrayList purchaseList = new ArrayList();
+	
+	try{  
+				
+				String url = "jdbc:mysql://localhost/soen387";
+				String username = "o_mercie";
+				String password = "odette";
+				
+				Class.forName("com.mysql.jdbc.Driver");
+				
+				
+				
+				ArrayList pruchaseList = new ArrayList();
+				
+				
+			Connection con=DriverManager.getConnection(url,username,password); 
+			      
+			
+			
+			
+			
+			
+			
+			PreparedStatement ps=con.prepareStatement(  
+					"SELECT `username`, `game_name`  FROM  `purchase` where `username`=?");  
+			 
+			ps.setString(1,name);
+			
+			   			  
+			
+			ResultSet rs = ps.executeQuery();  
+			
+			 ArrayList a2 = null;
+			
+			
+			while(rs.next()) {
+				
+				a2 = new ArrayList<String>();
+				
+				 a2.add(rs.getString(1));
+	             a2.add(rs.getString(2));
+				
+				 
+				purchaseList.add(a2);
+				 
+				 
+				
+				
+				 
+			}
+			
+			
+			
+			
+			
+			
+			con.close(); 
+			
+			
+			
+			
+			
+			          
+			}catch(Exception e){System.out.println(e);}
+	
+	return purchaseList;  
+			
+			
+			
+			
+			
+			
+			
+		}
+
 }
+

@@ -116,6 +116,7 @@
 
 <form method="post" action="EmptyCart">
                 <input type="submit" value="Empty Shopping Cart"/> </form>
+                <br><br><br>
                 <form method="post" action="CheckOut">
                 <input type="submit" value="CheckOut"/> </form>
 

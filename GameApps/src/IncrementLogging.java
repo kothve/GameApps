@@ -125,7 +125,36 @@ status=rs.next();
 	}catch(Exception e){System.out.println(e);}
 	return status;  
 	
-	} 
+	}
+
+public static void Unlock(String username1) {
+try{  
+		
+		String url = "jdbc:mysql://localhost/soen387";
+		String username = "o_mercie";
+		String password = "odette";
+		
+		Class.forName("com.mysql.jdbc.Driver");
+		
+		Connection con=DriverManager.getConnection(url,username,password); 	
+		
+	
+		String yes = "no";	
+
+PreparedStatement r1=con.prepareStatement( "update users set locked='"+yes+"' where username='"+username1+"'");;  
+				
+		
+	/*PreparedStatement r1=con.prepareStatement("UPDATE soen387.users SET lock='yes' WHERE username='"+name+"'");  */
+		  
+	
+	      
+		r1.executeUpdate();
+	      
+	
+	          
+	}catch(Exception e){System.out.println(e);}  
+	
+} 
 	
 
 }	

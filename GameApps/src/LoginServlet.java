@@ -130,7 +130,7 @@ public void doPost(HttpServletRequest request, HttpServletResponse response)
     			
     			 request.setAttribute("gameList", gameList);  
     			session.setAttribute("user", username);
-    			session.setMaxInactiveInterval(1000);   
+    			  
     	    	rd = request.getRequestDispatcher("AdminSuccess.jsp");
     	    	 rd.forward(request, response);
     			
